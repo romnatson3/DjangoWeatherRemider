@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework import routers
 from weather.views import CityView, SubscribedCityView, SubscribedCityViewEdit, WeatherView
+from django.views.static import serve
+from .settings import STATIC_ROOT
 
 
 urlpatterns = [
@@ -27,4 +29,5 @@ urlpatterns = [
     path('api/weather/', WeatherView.as_view(), name='weather'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    re_path(r'static/(?P<path>.*)$', serve, {'document_root':STATIC_ROOT}),
 ]

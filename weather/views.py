@@ -45,7 +45,7 @@ class WeatherView(APIView):
 
 
 class CityView(APIView):
-    permission_classes = [IsAuthenticated]
+#    permission_classes = [IsAuthenticated]
     def get_object(self, name):
         return get_list_or_404(City, name__icontains=name)
 
